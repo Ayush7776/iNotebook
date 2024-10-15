@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from account.models import User
+from account.models import User,Note
 from django.utils.encoding import smart_str,force_bytes,DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-
+from rest_framework.serializers import ModelSerializer
 from account.utils import Utils
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
@@ -106,3 +106,24 @@ class ResetPasswordByLinkSerializer(serializers.Serializer):
             PasswordResetTokenGenerator().check_token(user,token)
             raise serializers.ValidationError("Token Is Not Valid Or Expired")
             
+
+class NoteSerilaizer(ModelSerializer):
+    class Meta:
+        model=Note
+        fields='__all__'
+
+class AddNotesSerializer(ModelSerializer):
+    note=serializers.CharField()
+
+    class Meta:
+        model=Note
+        fields=['note']
+    def validate(self, attrs):
+        user=self.context.get('user')
+        note=attrs.get('note')
+        if user:
+            Note.objects.create(user=user,note=note)
+        else:
+            raise serializers.ValidationError("User Not Found")
+        return attrs
+    

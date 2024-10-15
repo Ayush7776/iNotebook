@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User
+from .models import User,Note
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 # Register your models here.
@@ -24,10 +24,18 @@ class UserAdmin(BaseUserAdmin):
             },
         ),
     ]
-    search_fields = ["email"]
+    search_fields = [""]
     ordering = ["email","id"]
     filter_horizontal = []
 
 
+class NoteAdmin(admin.ModelAdmin):
+    list_display = ["id","user","note",]
+    list_filter = ["user"]
+    ordering = ["user","id"]
+    search_fields = ["note","id"]
+
+
 # Now register the new UserAdmin...
 admin.site.register(User, UserAdmin)
+admin.site.register(Note,NoteAdmin)

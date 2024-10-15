@@ -2,16 +2,21 @@ import React, { useContext } from 'react'
 import '../css/style.css'
 import { Link } from 'react-router-dom';
 import AuthContext from '../Context/AuthContex';
+import Loading from './Loading';
 
-const Login = () => { 
-    let {loginUser}=useContext(AuthContext)
+const Login = () => {
+    let { loginUser,loading } = useContext(AuthContext)
     return (
         <>
+        {
+         loading &&
+            <Loading/>
+        }
             <div className="background">
                 <div className="shape"></div>
                 <div className="shape"></div>
             </div>
-            <form method="post" onSubmit={loginUser}>
+            <form className='localform' method="post" onSubmit={loginUser}>
                 <h3>Login Here</h3>
                 <label htmlFor="Email">Email</label>
                 <input type="text" placeholder="Enter Email" id="email" name="email" />
@@ -30,7 +35,6 @@ const Login = () => {
                 <div className='sname'>
                     <Link to="/register" className='sname' >Create An Account</Link>
                 </div>
-
             </form>
         </>
     )

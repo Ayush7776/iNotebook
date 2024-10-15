@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
-from account.serializer import UserRegistrationSerializer,UserLoginSerializer,ProfileSerializer,ChangePasswordSerializer,ResetPasswordEmailSerailizer,ResetPasswordByLinkSerializer
+from account.serializer import UserRegistrationSerializer,UserLoginSerializer,ProfileSerializer,ChangePasswordSerializer,ResetPasswordEmailSerailizer,ResetPasswordByLinkSerializer,NoteSerilaizer,AddNotesSerializer
 from django.contrib.auth import authenticate
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -69,4 +69,19 @@ class ResetPasswordByLinkView(APIView):
         serializer.is_valid(raise_exception=True)
         return Response({'msg':'Password Reset SucessFully'},status=status.HTTP_200_OK)
 
-            
+
+class Nots(APIView):
+    permission_classes=[IsAuthenticated]
+    def get(self,request,format=None):
+        user=request.user
+        notes=user.note_set.all()
+        serializer=NoteSerilaizer(notes,many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
+    
+    def post(self,request):
+        serializer=AddNotesSerializer(data=request.data,context={'user':request.user})
+        serializer.is_valid(raise_exception=True)
+        return Response({'msg':'Not Added Sucessesfully'},status=status.HTTP_200_OK)
+
+
+

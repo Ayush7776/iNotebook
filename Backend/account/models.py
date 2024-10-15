@@ -1,5 +1,4 @@
 from django.db import models
-from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 
@@ -63,3 +62,9 @@ class User(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+
+class Note(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    note=models.TextField(null=False)
+
+

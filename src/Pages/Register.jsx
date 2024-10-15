@@ -9,7 +9,7 @@ const Register = () => {
                 <div className="shape"></div>
                 <div className="shape"></div>
             </div>
-            <form method="post" onSubmit={registerUser}>
+            <form className='localform' method="post" onSubmit={registerUser}>
                 <h3>Register</h3>
                 <input type="text" placeholder="Enter Name" id="name" name="name" />
                 <input type="text" placeholder="Enter Email" id="email" name="email" />
