@@ -17,7 +17,7 @@ const Login = () => {
                 <div className="shape"></div>
             </div>
             <form className='localform' method="post" onSubmit={loginUser}>
-                <h3>Login Here</h3>
+                <h3 className=''>Login Here</h3>
                 <label htmlFor="Email">Email</label>
                 <input type="text" placeholder="Enter Email" id="email" name="email" />
 

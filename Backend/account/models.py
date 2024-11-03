@@ -66,5 +66,6 @@ class User(AbstractBaseUser):
 class Note(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     note=models.TextField(null=False)
+    theme=models.TextField(default="light")
 
 

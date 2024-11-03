@@ -14,10 +14,13 @@ import React, { Fragment } from 'react';
 import { AuthProvider } from './Context/AuthContex';
 import ChangePassword from './Pages/ChangePassword';
 import NotFound from './Pages/NotFound';
+import './css/font.css'
 function App() {
 
   return (
     <>
+    <div className='ubuntu-light'>
+
       <Router>
         <AuthProvider>
           <Fragment>
@@ -33,6 +36,7 @@ function App() {
           </Fragment>
         </AuthProvider>
       </Router>
+    </div>
     </>
   );
 }

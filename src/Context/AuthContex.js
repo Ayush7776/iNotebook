@@ -116,13 +116,13 @@ export const AuthProvider = ({ children }) => {
         // console.log({ 'data': data })
         // console.log({ 'response': response })
         if (response.status === 200) {
-            alert("Password Changed SucessFully")
+            toast.success('Password Changed SucessFully')
             await userprofile(access)
             navigate("/")
             setLoading(false)
         }
         else {
-            alert("SomeThing Went Worng")
+            toast.error("SomeThing Went Worng")
             setLoading(false)
         }
     }
@@ -147,29 +147,32 @@ export const AuthProvider = ({ children }) => {
         console.log(e.target.note.value)
         let authToken = JSON.parse(localStorage.getItem('authToken'))
         let access = authToken.access
-        let response = await fetch('http://127.0.0.1:8000/api/user/notes', {
+        let response = await fetch('http://127.0.0.1:8000/api/user/notes/', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${access}`,
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            "note": e.target.note.value
+            "note": e.target.note.value,
+            "theme": e.target.theme.value
           })
         })
-        // let data = await response.json()
-        // console.log({ 'data': data })
-        // console.log({ 'response': response })
-        if (response.status === 200) {
+        let data = await response.json()
+        console.log({ 'data': data })
+        console.log({ 'response': response })
+        if (response.status === 201) {
             window.location.reload("/");
             setLoading(false)
         }
         else {
-            alert("SomeThing Went Worng")
+            toast.success('Something Went Wrong')
             setLoading(false)
         }
     
     }
+   
+   
 
     let contextData = {
         user: user,

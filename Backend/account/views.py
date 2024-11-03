@@ -1,11 +1,11 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import status
-from account.serializer import UserRegistrationSerializer,UserLoginSerializer,ProfileSerializer,ChangePasswordSerializer,ResetPasswordEmailSerailizer,ResetPasswordByLinkSerializer,NoteSerilaizer,AddNotesSerializer
+from rest_framework import status,generics
+from account.serializer import UserRegistrationSerializer,UserLoginSerializer,ProfileSerializer,ChangePasswordSerializer,ResetPasswordEmailSerailizer,ResetPasswordByLinkSerializer,NoteSerilaizer,AddNotesSerializer,UpdateNotesSerializer
 from django.contrib.auth import authenticate
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
-
+from .models import Note
 
 
 def get_tokens_for_user(user):
@@ -70,7 +70,7 @@ class ResetPasswordByLinkView(APIView):
         return Response({'msg':'Password Reset SucessFully'},status=status.HTTP_200_OK)
 
 
-class Nots(APIView):
+# class Nots(APIView):
     permission_classes=[IsAuthenticated]
     def get(self,request,format=None):
         user=request.user
@@ -81,7 +81,30 @@ class Nots(APIView):
     def post(self,request):
         serializer=AddNotesSerializer(data=request.data,context={'user':request.user})
         serializer.is_valid(raise_exception=True)
-        return Response({'msg':'Not Added Sucessesfully'},status=status.HTTP_200_OK)
+        return Response({'msg':'Note Added Sucessesfully'},status=status.HTTP_200_OK)
+    
+    def put(self,request):
+        
+        serializer=UpdateNotesSerializer(data=request.data,context={'user':request.user})
+        serializer.is_valid(raise_exception=True)
+        return Response({'msg':'Note Updated Sucessesfully'},status=status.HTTP_200_OK)
 
+class NoteListCreateView(generics.ListCreateAPIView):
+    permission_classes=[IsAuthenticated]
+    serializer_class=NoteSerilaizer
 
+    def get_queryset(self):
+        print(self.request.user)
+        return Note.objects.filter(user=self.request.user)
 
+    def perform_create(self,serializer):
+        print(self.request.user)
+        serializer.save(user=self.request.user)
+
+class NoteDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = NoteSerilaizer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Note.objects.filter(user=self.request.user)
+ 

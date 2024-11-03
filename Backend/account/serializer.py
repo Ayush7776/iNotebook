@@ -110,7 +110,8 @@ class ResetPasswordByLinkSerializer(serializers.Serializer):
 class NoteSerilaizer(ModelSerializer):
     class Meta:
         model=Note
-        fields='__all__'
+        fields = ['id','note','theme']
+
 
 class AddNotesSerializer(ModelSerializer):
     note=serializers.CharField()
@@ -123,6 +124,27 @@ class AddNotesSerializer(ModelSerializer):
         note=attrs.get('note')
         if user:
             Note.objects.create(user=user,note=note)
+        else:
+            raise serializers.ValidationError("User Not Found")
+        return attrs
+    
+class UpdateNotesSerializer(ModelSerializer):
+    note=serializers.CharField()
+    id=serializers.CharField()
+    class Meta:
+        model=Note
+        fields=['id','note']
+    def validate(self, attrs):
+        user=self.context.get('user')
+        note=attrs.get('note')
+        id=attrs.get('id')
+        print(note)
+        data=Note.objects.get(id=id)
+        print(data.id)
+        if data:
+            # data.note(note)
+            data.note=attrs.get('note')
+            data.save()
         else:
             raise serializers.ValidationError("User Not Found")
         return attrs
