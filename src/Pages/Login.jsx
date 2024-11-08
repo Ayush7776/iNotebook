@@ -2,16 +2,17 @@ import React, { useContext } from 'react'
 import '../css/style.css'
 import { Link } from 'react-router-dom';
 import AuthContext from '../Context/AuthContex';
-import Loading from './Loading';
+import Loading from './Loading'
 
 const Login = () => {
-    let { loginUser,loading } = useContext(AuthContext)
+    let { loginUser, loading } = useContext(AuthContext)
     return (
         <>
-        {
-         loading &&
-            <Loading/>
-        }
+            {
+                loading &&
+                <Loading />
+
+            }
             <div className="background">
                 <div className="shape"></div>
                 <div className="shape"></div>

@@ -1,10 +1,15 @@
 import React, { useContext } from 'react'
 import AuthContext from '../Context/AuthContex'
-
+import Loading from './Loading'
 function ChangePassword() {
-    let {user,changePassword}=useContext(AuthContext)
+    let {user,changePassword,loading}=useContext(AuthContext)
   return (
     <>
+    {
+      loading &&
+      <Loading/>
+
+    }
             <div className="background">
                 <div className="shape"></div>
                 <div className="shape"></div>

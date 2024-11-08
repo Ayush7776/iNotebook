@@ -1,10 +1,16 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import AuthContext from '../Context/AuthContex';
+import Loading from './Loading'
+
 const Register = () => {
-    const { registerUser } = useContext(AuthContext)
+    const { registerUser, loading } = useContext(AuthContext)
     return (
         <>
+            {
+                loading &&
+                <Loading />
+            }
             <div className="background">
                 <div className="shape"></div>
                 <div className="shape"></div>

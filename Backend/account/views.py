@@ -1,11 +1,12 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status,generics
-from account.serializer import UserRegistrationSerializer,UserLoginSerializer,ProfileSerializer,ChangePasswordSerializer,ResetPasswordEmailSerailizer,ResetPasswordByLinkSerializer,NoteSerilaizer,AddNotesSerializer,UpdateNotesSerializer
+from account.serializer import UserRegistrationSerializer,UserLoginSerializer,ProfileSerializer,ProfileEditSerializer,ChangePasswordSerializer,ResetPasswordEmailSerailizer,ResetPasswordByLinkSerializer,NoteSerilaizer,AddNotesSerializer,UpdateNotesSerializer
 from django.contrib.auth import authenticate
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
-from .models import Note
+from .models import Note,User
+from rest_framework.parsers import MultiPartParser, FormParser
 
 
 def get_tokens_for_user(user):
@@ -24,7 +25,7 @@ class UserRegistrationView(APIView):
             user=serilizer.save()
             token=get_tokens_for_user(user)
             return Response({'msg':"Registration  Sucess",'token':token},status=status.HTTP_200_OK)
-        return Response(serilizer.errors,status=status.HTTP_400_BAD_REQUEST)
+        return Response({'msg':"Something Went Wrong"},status=status.HTTP_400_BAD_REQUEST)
 
 class UserLoginView(APIView):
 
@@ -44,9 +45,21 @@ class UserLoginView(APIView):
 
 class ProfileView(APIView):
     permission_classes=[IsAuthenticated]
+    parser_classes = (MultiPartParser, FormParser)
+
     def get(self,request,format=None):
         serializer=ProfileSerializer(request.user)
         return Response(serializer.data,status=status.HTTP_200_OK)
+
+class ProfileEditView(APIView):
+    permission_classes=[IsAuthenticated]
+    parser_classes = (MultiPartParser, FormParser)
+
+    def patch(self,request,formate=None):
+        # print(request.user)
+        serializer=ProfileEditSerializer(data=request.data,context={'user':request.user})
+        serializer.is_valid(raise_exception=True)
+        return Response({'msg':'User Datails Updated'},status=status.HTTP_200_OK)
 
 class ChangePasswordView(APIView):
     permission_classes=[IsAuthenticated]

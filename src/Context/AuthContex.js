@@ -38,11 +38,11 @@ export const AuthProvider = ({ children }) => {
             let access = data.token.access
             await userprofile(access)
             navigate("/")
-            toast.success("Login Sucessfully")
+            toast.success(data.msg)
             setLoading(false)
         }
         else {
-            toast.error('Something went wrong!')
+            toast.error(data.msg)
             setLoading(false)
         }
     }
@@ -70,11 +70,12 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('authToken', JSON.stringify(data.token))
             let access = data.token.access
             await userprofile(access)
+            toast.success(data.msg)
             navigate("/")
             setLoading(false)
         }
         else {
-            alert("SomeThing Went Worng")
+            toast.error("Something Went Wrong")
             setLoading(false)
         }
     }
@@ -112,17 +113,17 @@ export const AuthProvider = ({ children }) => {
             })
         })
 
-        // let data = await response.json()
+        let data = await response.json()
         // console.log({ 'data': data })
         // console.log({ 'response': response })
         if (response.status === 200) {
-            toast.success('Password Changed SucessFully')
+            toast.success(data.msg)
             await userprofile(access)
             navigate("/")
             setLoading(false)
         }
         else {
-            toast.error("SomeThing Went Worng")
+            toast.error(data.msg)
             setLoading(false)
         }
     }
@@ -138,6 +139,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.removeItem('access')
         navigate('/login')
         setLoading(false)
+        toast.warning("Logout Succesfully")
     }
     // Function For Adding Or Fetching Notes
 
@@ -159,14 +161,14 @@ export const AuthProvider = ({ children }) => {
           })
         })
         let data = await response.json()
-        console.log({ 'data': data })
-        console.log({ 'response': response })
+        // console.log({ 'data': data })
+        // console.log({ 'response': response })
         if (response.status === 201) {
             window.location.reload("/");
             setLoading(false)
         }
         else {
-            toast.success('Something Went Wrong')
+            toast.error(data.msg)
             setLoading(false)
         }
     

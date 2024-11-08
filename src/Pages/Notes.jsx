@@ -5,14 +5,16 @@ import { toast } from 'react-toastify'
 function Notes() {
     useEffect(() => {
         fetchNotes()
-    }, [])
+    })
     let { logoutUser } = useContext(AuthContext)
 
     // This Note  IS Use For Getting All Notes For Specific User
     const [notes, setnotes] = useState([])
 
     // This memo  IS Use For Getting Singal Note While Updating Note
-    const [memo, setmemo] = useState({ "id": "", "note": "", "theme": "" })
+    const [memoid, setmemoid] = useState()
+    const [memonote, setmemonote] = useState()
+    const [memotheme, setmemotheme] = useState()
 
     const fetchNotes = async () => {
         let authToken = JSON.parse(localStorage.getItem('authToken'))
@@ -67,7 +69,9 @@ function Notes() {
         console.log({ 'data': data })
         console.log({ 'response': response })
         if (response.status === 200) {
-            setmemo(data)
+            setmemoid(data.id)
+            setmemonote(data.note)
+            setmemotheme(data.theme)
             console.log(data.id)
 
         }
@@ -135,12 +139,12 @@ function Notes() {
                     <div className="modal-content">
 
                         <div className="modal-body">
-                            <form action='' onSubmit={(e)=>editNote(e,memo.id)}>
+                            <form action='' onSubmit={(e)=>editNote(e,memoid)}>
                                 <div className="form-floating">
-                                    <textarea onChange={(e) => setmemo(e.target.value)} defaultValue={memo.note} className={`my-2 alert alert-${memo.theme} fw-bold fade show`} id="note" placeholder="Leave a comment here" style={{ 'height': '200px','width':'100%'}}></textarea>
+                                    <textarea onChange={(e) => setmemonote(e.target.value)} value={memonote} className={`my-2 alert alert-${memotheme} fw-bold fade show`} id="note" placeholder="Leave a comment here" style={{ 'height': '200px','width':'100%'}}></textarea>
                                 </div>
-                                <select id='theme'  className={`my-2 form-select text-${memo.theme}`} aria-label="Default select example">
-                                    <option selected value={memo.theme}>Select Theme</option>
+                                <select id='theme'  className={`my-2 form-select text-${memotheme}`} aria-label="Default select example">
+                                    <option selected value={memotheme}>Select Theme</option>
                                     <option className='text-primary' value="primary">Blue</option>
                                     <option className='text-secondary' value="secondary">Grey</option>
                                     <option className='text-success' value="success">Green</option>

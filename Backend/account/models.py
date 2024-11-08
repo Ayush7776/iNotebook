@@ -38,6 +38,7 @@ class User(AbstractBaseUser):
     updated_at=models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    profile_pic=models.ImageField(upload_to='profile_pics/',default="profile_pics/user.jpg")
 
     objects = MyUserManager()
 
@@ -67,5 +68,6 @@ class Note(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     note=models.TextField(null=False)
     theme=models.TextField(default="light")
+    updated_at=models.DateTimeField(auto_now_add=True,null=True)
 
 

@@ -35,7 +35,30 @@ class UserLoginSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model=User
-        fields=['id','email','name']
+        fields='__all__'
+
+
+class ProfileEditSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model=User
+        fields = ['name','profile_pic']
+
+    def validate(self,attrs):
+        user=self.context.get('user')
+        if User.objects.filter(email=user).exists():
+            print(attrs.get('profile_pic'))
+            print(attrs.get('name'))
+            data=User.objects.get(email=user)
+            data.profile_pic=attrs.get('profile_pic')
+            data.name=attrs.get('name')
+            data.save()
+        else:
+            raise serializers.ValidationError("User Not Found")
+
+        return attrs
+
+                
 
 class ChangePasswordSerializer(serializers.Serializer):
     password=serializers.CharField(max_length=255,style={'input_type':'password'},write_only=True)

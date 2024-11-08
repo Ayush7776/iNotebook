@@ -16,27 +16,25 @@ import ChangePassword from './Pages/ChangePassword';
 import NotFound from './Pages/NotFound';
 import './css/font.css'
 function App() {
-
   return (
     <>
-    <div className='ubuntu-light'>
-
-      <Router>
-        <AuthProvider>
-          <Fragment>
-            <Routes>
-              <Route exact path='/' element={<PrivateRoute />}>
-                <Route exact path='/' element={<Home />} />
-                <Route exact path='/changePassword' element={<ChangePassword />} />
-              </Route>
-              <Route exact path='/register' element={<Register />} />
-              <Route exact path='/login' element={<Login />} />
-              <Route  path='*' element={<NotFound/>} />
-            </Routes>
-          </Fragment>
-        </AuthProvider>
-      </Router>
-    </div>
+      <div className='ubuntu-light'>
+        <Router>
+          <AuthProvider>
+            <Fragment>
+              <Routes>
+                <Route exact path='/' element={<PrivateRoute />}>
+                  <Route exact path='/' element={<Home />} />
+                  <Route exact path='/changePassword' element={<ChangePassword />} />
+                </Route>
+                <Route exact path='/register' element={<Register />} />
+                <Route exact path='/login' element={<Login />} />
+                <Route path='*' element={<NotFound />} />
+              </Routes>
+            </Fragment>
+          </AuthProvider>
+        </Router>
+      </div>
     </>
   );
 }

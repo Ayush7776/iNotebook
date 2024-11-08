@@ -1,12 +1,18 @@
 import React, { useContext } from 'react'
 import AuthContext from '../Context/AuthContex'
 import Notes from './Notes'
+import Loading from './Loading'
 import { Link } from 'react-router-dom'
-
 const Home = () => {
-  let { user, logoutUser, addNotes } = useContext(AuthContext)
+  let { user, logoutUser, addNotes,loading } = useContext(AuthContext)
+  console.log(user)
   return (
     <>
+    {
+      loading &&
+      <Loading/>
+
+    }
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">iNoteBook</Link>
@@ -25,7 +31,7 @@ const Home = () => {
 
               <div className="flex-shrink-0 dropdown">
                 <Link to="/" className="d-block link-body-emphasis text-decoration-none dropdown-toggle show" data-bs-toggle="dropdown" aria-expanded="true">
-                  <img src="https://img.freepik.com/free-vector/user-blue-gradient_78370-4692.jpg?t=st=1730541993~exp=1730545593~hmac=c213462eb62449ae0e3dd689e1fd9de71ae7e9cf26799facca4baf2b7d25a4b9&w=740" alt="mdo" width="32" height="32" className="rounded-circle" />
+                <img src={`http://localhost:8000${user.profile_pic}`} alt="mdo" width="32" height="32" className="rounded-circle" />
                 </Link>
                 <ul className="dropdown-menu text-small shadow" style={{ position: "absolute", inset: "0px 0px auto auto", "margin": '0px', transform: 'translate3d(0.5px, 34px, 0px)' }} data-popper-placement="bottom-end">
                   <li><Link className="dropdown-item" to='/changePassword'>Change Password</Link></li>
