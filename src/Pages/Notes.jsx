@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AuthContext from '../Context/AuthContex'
 import { toast } from 'react-toastify'
-
 function Notes() {
     useEffect(() => {
         fetchNotes()
-    })
+    },[])
     let { logoutUser } = useContext(AuthContext)
 
     // This Note  IS Use For Getting All Notes For Specific User
@@ -111,7 +110,6 @@ function Notes() {
 
     return (
         <>
-
             <div className="container text-center">
                 <div className="row g-2 m-3">
                     {notes.map((note) => (

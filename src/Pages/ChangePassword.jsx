@@ -1,30 +1,32 @@
 import React, { useContext } from 'react'
 import AuthContext from '../Context/AuthContex'
 import Loading from './Loading'
+import Navbar from './Navbar'
 function ChangePassword() {
-    let {user,changePassword,loading}=useContext(AuthContext)
+  let { user, changePassword, loading } = useContext(AuthContext)
   return (
     <>
-    {
-      loading &&
-      <Loading/>
+      {
+        loading &&
+        <Loading />
 
-    }
-            <div className="background">
-                <div className="shape"></div>
-                <div className="shape"></div>
-            </div>
-            <form className='localform' method="post" onSubmit={changePassword}>
-                <h3>Change Your Password {user.name}</h3>
-                <label htmlFor="password">New Password</label>
-                <input type="text" placeholder="Enter New Password" id="password" name="password" />
+      }
+      <Navbar />
+      <div className="background">
+        <div className="shape"></div>
+        <div className="shape"></div>
+      </div>
+      <form className='localform' method="post" onSubmit={changePassword}>
+        <h3>Change Your Password {user.name}</h3>
+        <label htmlFor="password">New Password</label>
+        <input type="text" placeholder="Enter New Password" id="password" name="password" />
 
-                <label htmlFor="password">Confirm New Password</label>
-                <input type="password" placeholder="Confirm New Password" id="password2" name="password2" />
-                <button className=' mt-3' type="submit">Change Password</button>
-                
-            </form>
-        </>
+        <label htmlFor="password">Confirm New Password</label>
+        <input type="password" placeholder="Confirm New Password" id="password2" name="password2" />
+        <button className=' mt-3' type="submit">Change Password</button>
+
+      </form>
+    </>
   )
 }
 

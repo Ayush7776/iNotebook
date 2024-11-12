@@ -1,7 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
 import Login from './Pages/Login';
-
 import PrivateRoute from './Utils/PrivateRoute'
 import {
   BrowserRouter as Router,
@@ -15,6 +14,8 @@ import { AuthProvider } from './Context/AuthContex';
 import ChangePassword from './Pages/ChangePassword';
 import NotFound from './Pages/NotFound';
 import './css/font.css'
+import Profile from './Pages/Profile';
+
 function App() {
   return (
     <>
@@ -26,6 +27,7 @@ function App() {
                 <Route exact path='/' element={<PrivateRoute />}>
                   <Route exact path='/' element={<Home />} />
                   <Route exact path='/changePassword' element={<ChangePassword />} />
+                  <Route exact path='/profile' element={<Profile />} />
                 </Route>
                 <Route exact path='/register' element={<Register />} />
                 <Route exact path='/login' element={<Login />} />

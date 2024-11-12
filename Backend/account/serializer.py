@@ -5,6 +5,8 @@ from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from rest_framework.serializers import ModelSerializer
 from account.utils import Utils
+from django.utils.timezone import now
+
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     password2=serializers.CharField(style={'input_type':'password'},write_only=True)
@@ -44,6 +46,7 @@ class ProfileEditSerializer(serializers.ModelSerializer):
         model=User
         fields = ['name','profile_pic']
 
+
     def validate(self,attrs):
         user=self.context.get('user')
         if User.objects.filter(email=user).exists():
@@ -55,8 +58,10 @@ class ProfileEditSerializer(serializers.ModelSerializer):
             data.save()
         else:
             raise serializers.ValidationError("User Not Found")
-
         return attrs
+
+
+        
 
                 
 

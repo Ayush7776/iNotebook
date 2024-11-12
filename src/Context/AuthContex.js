@@ -14,6 +14,7 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     let navigate = useNavigate()
 
+
     const loginUser = async (e) => {
         setLoading(true)
         e.preventDefault()
@@ -29,8 +30,8 @@ export const AuthProvider = ({ children }) => {
         })
 
         let data = await response.json()
-        // console.log({ 'data': data })
-        // console.log({ 'response': response })
+        // //console.log({ 'data': data })
+        // //console.log({ 'response': response })
 
         if (response.status === 200) {
             setauthToken(data)
@@ -63,8 +64,8 @@ export const AuthProvider = ({ children }) => {
             })
         })
         const data = await response.json()
-        // console.log({ 'data': data })
-        // console.log({ 'responce': response })
+        // //console.log({ 'data': data })
+        // //console.log({ 'responce': response })
         if (response.status === 200) {
             setauthToken(data)
             localStorage.setItem('authToken', JSON.stringify(data.token))
@@ -89,8 +90,8 @@ export const AuthProvider = ({ children }) => {
             },
         })
         let data = await response.json()
-        // console.log({ 'data': data })
-        // console.log({ 'response': response })
+        // //console.log({ 'data': data })
+        // //console.log({ 'response': response })
         localStorage.setItem('data', JSON.stringify(data))
         setUser(data)
         setLoading(false)
@@ -108,14 +109,14 @@ export const AuthProvider = ({ children }) => {
                 'content-Type': 'application/json'
             },
             body: JSON.stringify({
-                'password': e.target.password.value,
-                'password2': e.target.password2.value
+                'name': e.target.name.value,
+                'email': e.target.email.value
             })
         })
 
         let data = await response.json()
-        // console.log({ 'data': data })
-        // console.log({ 'response': response })
+        // //console.log({ 'data': data })
+        // //console.log({ 'response': response })
         if (response.status === 200) {
             toast.success(data.msg)
             await userprofile(access)
@@ -126,6 +127,43 @@ export const AuthProvider = ({ children }) => {
             toast.error(data.msg)
             setLoading(false)
         }
+    }
+
+    const editProfile= async (e)=>{
+        e.preventDefault()
+        if (!e.target.image.files[0] || !e.target.name.value) {
+            toast.error("Please Fill Up Require Fileds")
+            return
+        }
+        setLoading(true)
+        const formData = new FormData();
+        formData.append('profile_pic', e.target.image.files[0]);
+        formData.append('name', e.target.name.value);
+
+        let authToken =JSON.parse(localStorage.getItem('authToken'))
+        let access=authToken.access
+        let response = await fetch('http://127.0.0.1:8000/api/user/editprofile', {
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Bearer ${access}`,
+            },
+            body:formData
+        })
+        let data = await response.json()
+        //console.log({ 'data': data })
+        //console.log({ 'response': response })
+        if (response.status===200){
+            toast.success("Profile Updated Sucessfully")
+            userprofile(access)
+            navigate("/")
+            setLoading(false)
+        }
+        else{
+            toast.error("Something Went Wrong")
+            setLoading(false)
+        }
+        
+
     }
     
 
@@ -146,7 +184,7 @@ export const AuthProvider = ({ children }) => {
     const addNotes = async (e) => {
         setLoading(true)
         e.preventDefault()
-        console.log(e.target.note.value)
+        //console.log(e.target.note.value)
         let authToken = JSON.parse(localStorage.getItem('authToken'))
         let access = authToken.access
         let response = await fetch('http://127.0.0.1:8000/api/user/notes/', {
@@ -161,8 +199,8 @@ export const AuthProvider = ({ children }) => {
           })
         })
         let data = await response.json()
-        // console.log({ 'data': data })
-        // console.log({ 'response': response })
+        // //console.log({ 'data': data })
+        // //console.log({ 'response': response })
         if (response.status === 201) {
             window.location.reload("/");
             setLoading(false)
@@ -183,6 +221,7 @@ export const AuthProvider = ({ children }) => {
         logoutUser: logoutUser,
         registerUser: registerUser,
         changePassword:changePassword,
+        editProfile:editProfile,
         addNotes:addNotes,
         loading:loading,
     }
