@@ -5,7 +5,7 @@ import Loading from './Loading'
 import Navbar from './Navbar'
 const Home = () => {
   let {user,addNotes, loading } = useContext(AuthContext)
-  console.log(user)
+  // console.log(user)
   return (
     <>
       {
@@ -23,7 +23,7 @@ const Home = () => {
                 <input className="my-2 fs-5 form-control" placeholder="Write Here" id="note" style={{ 'height': '100px' }} />
 
                 <select id='theme' className="my-2 form-select" aria-label="Default select example">
-                  <option selected>Select Theme</option>
+                  <option  selected>Select Theme</option>
                   <option className='text-primary' value="primary">Blue</option>
                   <option className='text-secondary' value="secondary">Grey</option>
                   <option className='text-success' value="success">Green</option>

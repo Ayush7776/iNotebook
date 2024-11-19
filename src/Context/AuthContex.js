@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     const loginUser = async (e) => {
         setLoading(true)
         e.preventDefault()
-        let response = await fetch('http://127.0.0.1:8000/api/user/login', {
+        let response = await fetch('https://inotebook-backend-6cei.onrender.com/api/user/login', {
             method: 'POST',
             headers: {
                 'content-Type': 'application/json'
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
     const registerUser = async (e) => {
         setLoading(true)
         e.preventDefault();
-        const response = await fetch('http://127.0.0.1:8000/api/user/register', {
+        const response = await fetch('https://inotebook-backend-6cei.onrender.com/api/user/register', {
             'method': 'POST',
             headers: {
                 'content-Type': 'application/json'
@@ -82,7 +82,7 @@ export const AuthProvider = ({ children }) => {
     }
     const userprofile = async (access) => {
         setLoading(true)
-        let response = await fetch('http://127.0.0.1:8000/api/user/profile', {
+        let response = await fetch('https://inotebook-backend-6cei.onrender.com/api/user/profile', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${access}`,
@@ -102,15 +102,15 @@ export const AuthProvider = ({ children }) => {
         e.preventDefault()
         let authToken =JSON.parse(localStorage.getItem('authToken'))
         let access=authToken.access
-        let response = await fetch('http://127.0.0.1:8000/api/user/changepassword', {
+        let response = await fetch('https://inotebook-backend-6cei.onrender.com/api/user/changepassword', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${access}`,
                 'content-Type': 'application/json'
             },
             body: JSON.stringify({
-                'name': e.target.name.value,
-                'email': e.target.email.value
+                'password': e.target.password.value,
+                'password2': e.target.password2.value
             })
         })
 
@@ -142,7 +142,7 @@ export const AuthProvider = ({ children }) => {
 
         let authToken =JSON.parse(localStorage.getItem('authToken'))
         let access=authToken.access
-        let response = await fetch('http://127.0.0.1:8000/api/user/editprofile', {
+        let response = await fetch('https://inotebook-backend-6cei.onrender.com/api/user/editprofile', {
             method: 'PATCH',
             headers: {
                 'Authorization': `Bearer ${access}`,
@@ -187,7 +187,7 @@ export const AuthProvider = ({ children }) => {
         //console.log(e.target.note.value)
         let authToken = JSON.parse(localStorage.getItem('authToken'))
         let access = authToken.access
-        let response = await fetch('http://127.0.0.1:8000/api/user/notes/', {
+        let response = await fetch('https://inotebook-backend-6cei.onrender.com/api/user/notes/', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${access}`,

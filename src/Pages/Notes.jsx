@@ -18,7 +18,7 @@ function Notes() {
     const fetchNotes = async () => {
         let authToken = JSON.parse(localStorage.getItem('authToken'))
         let access = authToken.access
-        let response = await fetch('http://127.0.0.1:8000/api/user/notes', {
+        let response = await fetch('https://inotebook-backend-6cei.onrender.com/api/user/notes', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${access}`,
@@ -39,7 +39,7 @@ function Notes() {
     const deletenote=async(id)=>{
         let authToken = JSON.parse(localStorage.getItem('authToken'))
         let access = authToken.access
-        let response = await fetch(`http://127.0.0.1:8000/api/user/notes/${id}`, {
+        let response = await fetch(`https://inotebook-backend-6cei.onrender.com/api/user/notes/${id}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${access}`,
@@ -57,7 +57,7 @@ function Notes() {
     const getnote = async (id) => {
         let authToken = JSON.parse(localStorage.getItem('authToken'))
         let access = authToken.access
-        let response = await fetch(`http://127.0.0.1:8000/api/user/notes/${id}`, {
+        let response = await fetch(`https://inotebook-backend-6cei.onrender.com/api/user/notes/${id}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${access}`,
@@ -84,7 +84,7 @@ function Notes() {
         console.log(id)
         let authToken = JSON.parse(localStorage.getItem('authToken'))
         let access = authToken.access
-        let response = await fetch(`http://127.0.0.1:8000/api/user/notes/${id}/`,{
+        let response = await fetch(`https://inotebook-backend-6cei.onrender.com/api/user/notes/${id}/`,{
           method: 'PUT',
           headers: {
             'Authorization': `Bearer ${access}`,

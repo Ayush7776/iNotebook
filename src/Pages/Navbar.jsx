@@ -33,7 +33,7 @@ function Navbar() {
 
                             <div className="flex-shrink-0 dropdown">
                                 <Link to="/" className="d-block link-body-emphasis text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal3" aria-expanded="true">
-                                    <img src={`http://localhost:8000${user.profile_pic}`} alt="mdo" width="32" height="32" className="rounded-circle" />
+                                    <img src={`https://inotebook-backend-6cei.onrender.com${user.profile_pic}`} alt="mdo" width="32" height="32" className="rounded-circle" />
                                 </Link>
 
 
@@ -47,7 +47,7 @@ function Navbar() {
 
                                                     <div className="top-container ">
 
-                                                        <img src={`http://localhost:8000${user.profile_pic}`} alt='profile' className="img-fluid profile-image rounded-5 shadow-lg" width="150" />
+                                                        <img src={`https://inotebook-backend-6cei.onrender.com${user.profile_pic}`} alt='profile' className="img-fluid profile-image rounded-5 shadow-lg" width="150" />
 
                                                     </div>
 
