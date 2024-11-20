@@ -149,7 +149,7 @@ export const AuthProvider = ({ children }) => {
             },
             body:formData
         })
-        let data = await response.json()
+        // let data = await response.json()
         //console.log({ 'data': data })
         //console.log({ 'response': response })
         if (response.status===200){

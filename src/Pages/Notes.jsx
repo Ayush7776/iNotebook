@@ -4,8 +4,8 @@ import { toast } from 'react-toastify'
 function Notes() {
     useEffect(() => {
         fetchNotes()
-    },[])
-    let { logoutUser } = useContext(AuthContext)
+    })
+    let { logoutUser,loading } = useContext(AuthContext)
 
     // This Note  IS Use For Getting All Notes For Specific User
     const [notes, setnotes] = useState([])
@@ -48,9 +48,10 @@ function Notes() {
         })
         if (response.status === 204) {
             fetchNotes()
+            loading(false)
         }
         else{
-
+            toast.error("Something Went Wrong")
         }
     }
 

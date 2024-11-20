@@ -19,10 +19,7 @@ function Navbar() {
                             location.pathname === "/"
                                 ?
                                 (<ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                                    <li className="nav-item">
-                                        <Link className="btn btn-dark rounded-5 text-white nav-link active" aria-current="page" to="/" data-bs-toggle="modal" data-bs-target="#exampleModal">Add New Notes</Link>
-                                    </li>
-
+    
                                 </ul>)
                                 :
                                 (<ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>)
@@ -39,8 +36,8 @@ function Navbar() {
 
                                 <div className="modal fade" id="exampleModal3" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div className="modal-dialog">
-                                        <div className="modal-content" style={{ backgroundColor: "transparent", border: "none", marginLeft: "100px" }}>
-                                            <div className="modal-body">
+                                        <div className="modal-content" style={{ backgroundColor: "transparent", border: "none"}}>
+                                            <div className="modal-body m-auto">
                                                 <div className="card">
                                                     <button type="button" className="btn-close position-absolute top-0 end-0 me-3" data-bs-dismiss="modal" aria-label="Close"></button>
 

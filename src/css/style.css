@@ -5,6 +5,16 @@
     margin: 0;
     box-sizing: border-box;
 }
+.add-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensures the button stays above other content */
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    background-color: lawngreen;
+}
 
 .background{
     width: 430px;

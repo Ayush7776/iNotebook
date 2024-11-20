@@ -3,18 +3,21 @@ import AuthContext from '../Context/AuthContex'
 import Notes from './Notes'
 import Loading from './Loading'
 import Navbar from './Navbar'
+import '../css/style.css'
 const Home = () => {
-  let {user,addNotes, loading } = useContext(AuthContext)
-  // console.log(user)
+  let { user, addNotes, loading } = useContext(AuthContext)
   return (
     <>
       {
-        loading &&
+        loading && user &&
         <Loading />
       }
-      <Navbar/>
+      <Navbar />
       <Notes />
+      {/* Modal Button  For Adding New Nots */}
+      <button class="btn rounded-circle add-button" data-bs-toggle="modal" data-bs-target="#exampleModal" >+</button>
 
+      {/* Modal For Adding New Nots */}
       <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
@@ -23,7 +26,7 @@ const Home = () => {
                 <input className="my-2 fs-5 form-control" placeholder="Write Here" id="note" style={{ 'height': '100px' }} />
 
                 <select id='theme' className="my-2 form-select" aria-label="Default select example">
-                  <option  selected>Select Theme</option>
+                  <option selected>Select Theme</option>
                   <option className='text-primary' value="primary">Blue</option>
                   <option className='text-secondary' value="secondary">Grey</option>
                   <option className='text-success' value="success">Green</option>
