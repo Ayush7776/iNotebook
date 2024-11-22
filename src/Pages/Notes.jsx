@@ -114,7 +114,7 @@ function Notes() {
             <div className="container text-center">
                 <div className="row g-2 m-3">
                     {notes.map((note) => (
-                        <div key={note.id} className="col-12 m-1">
+                        <div key={note.id} className="col-12 m-1 animate__animated animate__bounceIn">
                             <div className={`m-1 w-100 alert alert-${note.theme} fw-bold fade show`}>
                                 <div onClick={() => getnote(note.id)} data-bs-toggle="modal" data-bs-target="#exampleModal2">
                                     {note.note}
