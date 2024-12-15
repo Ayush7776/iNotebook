@@ -8,7 +8,7 @@ export default AuthContext;
 
 export const AuthProvider = ({ children }) => {
 
-
+    
     let [authToken, setauthToken] = useState(() => localStorage.getItem('authToken') ? JSON.parse(localStorage.getItem('authToken')) : null)
     let [user, setUser] = useState(() => localStorage.getItem('authToken') ? JSON.parse(localStorage.getItem('data')) : null)
     const [loading, setLoading] = useState(false);
@@ -192,6 +192,8 @@ export const AuthProvider = ({ children }) => {
         }
 
     }
+
+
 
     const refreshToken = async () => {
         console.log("Updating")
