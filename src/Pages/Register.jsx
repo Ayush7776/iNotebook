@@ -34,7 +34,7 @@ const Register = () => {
                     <div className="fb"><i className="fab fa-facebook"></i>  Facebook</div>
                 </div>
                 <div className='sname'>
-                    <Link to="/login" className='sname' >Alredy Have An Account</Link>
+                    <Link to="/login" className='sname mx-2' >Alredy Have An Account</Link>
                 </div>
 
             </form>

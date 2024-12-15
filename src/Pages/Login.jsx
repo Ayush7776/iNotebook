@@ -11,7 +11,6 @@ const Login = () => {
             {
                 loading &&
                 <Loading />
-
             }
             <div className="background">
                 <div className="shape"></div>
@@ -34,7 +33,8 @@ const Login = () => {
                     <div className="fb"><i className="fab fa-facebook"></i>  Facebook</div>
                 </div>
                 <div className='sname'>
-                    <Link to="/register" className='sname' >Create An Account</Link>
+                    <Link to="/register" className='sname mx-2' >Create An Account</Link>
+                    <Link to="/forgotpassword" className='sname mx-2' >Forgot Password</Link>
                 </div>
             </form>
         </>

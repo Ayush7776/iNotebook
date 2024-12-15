@@ -15,6 +15,7 @@ import ChangePassword from './Pages/ChangePassword';
 import NotFound from './Pages/NotFound';
 import './css/font.css'
 import Profile from './Pages/Profile';
+import ForgotPassword from './Pages/ForgotPassword';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
                 </Route>
                 <Route exact path='/register' element={<Register />} />
                 <Route exact path='/login' element={<Login />} />
+                <Route exact path='/forgotpassword' element={<ForgotPassword/>} />
                 <Route path='*' element={<NotFound />} />
               </Routes>
             </Fragment>

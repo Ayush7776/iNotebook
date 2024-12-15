@@ -5,7 +5,7 @@ import Loading from './Loading'
 import Navbar from './Navbar'
 import '../css/style.css'
 const Home = () => {
-  let { user, addNotes, loading } = useContext(AuthContext)
+  let { user, addNotes, loading} = useContext(AuthContext)
   return (
     <>
       {
@@ -15,8 +15,7 @@ const Home = () => {
       <Navbar />
       <Notes />
       {/* Modal Button  For Adding New Nots */}
-      <button class="btn rounded-circle add-button" data-bs-toggle="modal" data-bs-target="#exampleModal" >+</button>
-
+      <button className="btn rounded-circle add-button" data-bs-toggle="modal" data-bs-target="#exampleModal" >+</button>
       {/* Modal For Adding New Nots */}
       <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog">
