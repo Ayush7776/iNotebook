@@ -20,18 +20,18 @@ const ChangePasswordLink = () => {
             },
             body: JSON.stringify({
                 "password": e.target.password.value,
-                "cpassword": e.target.cpassword.value
+                "password2": e.target.password2.value
             })
         })
         let data = await response.json()
         console.log({ 'data': data })
         console.log({ 'response': response })
         if (response.status === 200) {
-            toast.success("Password Change")
+            toast.success("Password Change Sucessfully")
             logoutUser()
         }
         else {
-            toast.success("Something Went Wrong")
+            toast.error("Something Went Wrong")
             logoutUser()
         }
         
@@ -51,10 +51,10 @@ const ChangePasswordLink = () => {
             <form className='localform' method="post" onSubmit={linkForgotPassword}>
                 <h3 className=''>Forgot Password</h3>
 
-                <label htmlFor="Email">Password</label>
+                <label htmlFor="password">Password</label>
                 <input type="text" placeholder="Enter Email" id="password" name="password" />
-                <label htmlFor="Email">Confirm Password</label>
-                <input type="password" placeholder="Enter Email" id="cpassword" name="cpassword" />
+                <label htmlFor="password2">Confirm Password</label>
+                <input type="password" placeholder="Confirm Password" id="password2" name="password2" />
 
                 <button type="submit">Change Password</button>
 
