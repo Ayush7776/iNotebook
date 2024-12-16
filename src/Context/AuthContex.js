@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
         }
         catch (error) {
             navigate("/notfound")
-            toast.error("Server Is Unrechable")
+            toast.info("Server Is Unrechable")
             setLoading(false)
         }
     }
@@ -94,7 +94,7 @@ export const AuthProvider = ({ children }) => {
         }
         catch (error) {
             navigate("/notfound")
-            toast.error("Server Is Unrechable")
+            toast.info("Server Is Unrechable")
             setLoading(false)
         }
     }
@@ -118,7 +118,7 @@ export const AuthProvider = ({ children }) => {
         }
         catch (error) {
             navigate("/notfound")
-            toast.error("Server Is Unrechable")
+            toast.info("Server Is Unrechable")
             setLoading(false)
         }
     }
@@ -158,7 +158,7 @@ export const AuthProvider = ({ children }) => {
         }
         catch (error) {
             navigate("/notfound")
-            toast.error("Server Is Unrechable")
+            toast.info("Server Is Unrechable")
             setLoading(false)
         }
     }
@@ -260,7 +260,7 @@ export const AuthProvider = ({ children }) => {
         }
         catch (error) {
             navigate("/notfound")
-            toast.error("Server Is Unrechable")
+            toast.info("Server Is Unrechable")
             setLoading(false)
         }
 
@@ -316,7 +316,7 @@ export const AuthProvider = ({ children }) => {
         }
         catch (error) {
             navigate("/notfound")
-            toast.error("Server Is Unrechable")
+            toast.info("Server Is Unrechable")
             setLoading(false)
         }
 

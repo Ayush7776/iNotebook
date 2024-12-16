@@ -1,40 +1,50 @@
 import React, { useContext } from 'react'
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams, } from 'react-router-dom';
 import '../css/style.css'
 import AuthContext from '../Context/AuthContex';
 import Loading from './Loading'
 import { toast } from 'react-toastify';
 
 const ChangePasswordLink = () => {
-    
-    let{loading,logoutUser}=useContext(AuthContext)
-    let {uid,token}=useParams()
+
+    let { loading, logoutUser } = useContext(AuthContext)
+    let { uid, token } = useParams()
+    let navigate=Navigate()
 
 
     const linkForgotPassword = async (e) => {
-        e.preventDefault()
-        let response = await fetch(`https://inotebook-backend-6cei.onrender.com/api/user/resetpassword/${uid}/${token}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "password": e.target.password.value,
-                "password2": e.target.password2.value
+        loading(true)
+        try {
+            e.preventDefault()
+            let response = await fetch(`https://inotebook-backend-6cei.onrender.com/api/user/resetpassword/${uid}/${token}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "password": e.target.password.value,
+                    "password2": e.target.password2.value
+                })
             })
-        })
-        let data = await response.json()
-        console.log({ 'data': data })
-        console.log({ 'response': response })
-        if (response.status === 200) {
-            toast.success("Password Change Sucessfully")
-            logoutUser()
+            let data = await response.json()
+            console.log({ 'data': data })
+            console.log({ 'response': response })
+            if (response.status === 200) {
+                toast.success("Password Reset Sucessfully,Login Using New Password")
+                logoutUser()
+
+            }
+            else {
+                toast.error("Something Went Wrong")
+                logoutUser()
+
+            }
+        } catch (error) {
+            navigate("/notfound")
+            toast.error("Server Is Unrechable")
+
         }
-        else {
-            toast.error("Something Went Wrong")
-            logoutUser()
-        }
-        
+
     }
     return (
 

@@ -12,7 +12,7 @@ function Navbar() {
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/"><span className='fw-normal'>{user && user.name}'s</span> iNoteBook</Link>
                     <Link to="/" className="d-flex d-lg-none border border-3 rounded-circle" data-bs-toggle="modal" data-bs-target="#exampleModal3" aria-expanded="true">
-                        <img src={`https://inotebook-backend-6cei.onrender.com${user.profile_pic}`} alt="mdo" width="32" height="32" className="rounded-circle" />
+                        <img src={`https://inotebook-backend-6cei.onrender.com${user.profile_pic}`} alt="profile_pic" width="32" height="32" className="rounded-circle" />
                     </Link>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -22,7 +22,7 @@ function Navbar() {
                         <div className="d-flex" role="search">
                             <div className="d-none d-lg-flex">
                                 <Link to="/" className="border border-3 rounded-circle" data-bs-toggle="modal" data-bs-target="#exampleModal3" aria-expanded="true">
-                                    <img src={`https://inotebook-backend-6cei.onrender.com${user.profile_pic}`} alt="mdo" width="32" height="32" className="rounded-circle" />
+                                    <img src={`https://inotebook-backend-6cei.onrender.com${user.profile_pic}`} alt="profile_pic" width="32" height="32" className="rounded-circle" />
                                 </Link>
                             </div>
                         </div>
